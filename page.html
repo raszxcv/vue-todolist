@@ -139,12 +139,15 @@ li span{
     line-height: 20px;
     margin-left:20px;
 }
+[v-cloak]{
+  display:none;
+}
 
     </style>
   </head>
   <body>
     <div id="app">
-    <section id="signInAndSignUp" v-if="currentUser===null">
+    <section id="signInAndSignUp" v-if="currentUser===null" v-cloak>
         <div class="formType">
 <!--           <label><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
           <label><input type="radio" name="type" value="login" v-model="actionType">登入</label> -->
@@ -178,7 +181,7 @@ li span{
           </form>
         </div>
     </section>
-    <section id="todo" v-if="currentUser!=null">
+    <section id="todo" v-if="currentUser!=null" v-cloak>
       <div class="he">
       <h1>{{ loginName }}{{ msg }}</h1>
       <div class="logOutBtn"><a href="#" @click.prevent=logOut>登出</a></div>

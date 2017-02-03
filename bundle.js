@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -314,50 +314,6 @@ exports.default = {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-var STORAGE_KEY = 'todos-vuejs';
-var STORAGE_KEY2 = "todo-input";
-var STORAGE_KEY3 = "login";
-
-exports.default = {
-	fetch: function fetch(type, thiss) {
-		if (type === 'todos-vuejs') {
-			console.log(thiss);
-			// thiss.currentUser = thiss.getCurrentUser();
-			return JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]');
-		}
-		if (type === "todo-input") {
-			return JSON.parse(window.localStorage.getItem(STORAGE_KEY2) || '[]');
-		}
-		if (type === "login") {
-			return JSON.parse(window.localStorage.getItem(STORAGE_KEY3) || null);
-		}
-	},
-	save: function save(type, items) {
-		if (type === 'todos-vuejs') {
-			return window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-		}
-		if (type === "todo-input") {
-			return window.localStorage.setItem(STORAGE_KEY2, JSON.stringify(items));
-		}
-		if (type === "login") {
-			return window.localStorage.setItem(STORAGE_KEY3, JSON.stringify(items));
-		}
-	},
-	remove: function remove() {
-		return window.localStorage.removeItem(STORAGE_KEY3);
-	}
-};
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, Buffer) {(function webpackUniversalModuleDefinition(root, factory) {
@@ -14336,10 +14292,10 @@ module.exports = AV;
 /******/ ]);
 });
 //# sourceMappingURL=av.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(8).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(7).Buffer))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22915,7 +22871,7 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(1)))
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23036,7 +22992,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23050,9 +23006,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(7)
-var ieee754 = __webpack_require__(9)
-var isArray = __webpack_require__(10)
+var base64 = __webpack_require__(6)
+var ieee754 = __webpack_require__(8)
+var isArray = __webpack_require__(9)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -24833,7 +24789,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -24923,7 +24879,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -24934,7 +24890,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24944,15 +24900,11 @@ var _bar = __webpack_require__(2);
 
 var _bar2 = _interopRequireDefault(_bar);
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _storage = __webpack_require__(4);
-
-var _storage2 = _interopRequireDefault(_storage);
-
-var _leancloudStorage = __webpack_require__(5);
+var _leancloudStorage = __webpack_require__(4);
 
 var _leancloudStorage2 = _interopRequireDefault(_leancloudStorage);
 
@@ -24969,9 +24921,7 @@ _leancloudStorage2.default.init({
 
 var app = new _vue2.default({
   el: '#app',
-  components: {
-    Storg: _storage2.default
-  },
+  components: {},
   data: {
     msg: ' todo list!',
     loginName: _leancloudStorage2.default.User.current() ? _leancloudStorage2.default.User.current().attributes.username : '',
@@ -24989,20 +24939,6 @@ var app = new _vue2.default({
     this.currentUser = this.getCurrentUser();
     this.fetchTodos();
   },
-  // watch:{
-  //   items:{
-  //     handler:function(val){
-  //       Storg.save('todos-vuejs',val);
-
-  //     },
-  //     deep:true
-  //   },
-  //   newItem:{
-  //   	handler:function(val){
-  //   		Storg.save("todo-input",val)
-  //   	}
-  //   }
-  // },
   methods: {
     saveTodo: function saveTodo() {
       var _this = this;

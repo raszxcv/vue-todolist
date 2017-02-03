@@ -1,6 +1,5 @@
 import bar from './bar'
 import Vue from 'vue'
-import Storg from './storage'
 import AV from 'leancloud-storage'
 import AVKey from './cloudKey'
 
@@ -17,7 +16,6 @@ AV.init({
 var app = new Vue({
   el: '#app',
   components:{
-    Storg
   },
   data: {
     msg: ' todo list!',
@@ -39,20 +37,6 @@ var app = new Vue({
     
 
   },
-  // watch:{
-  //   items:{
-  //     handler:function(val){
-  //       Storg.save('todos-vuejs',val);
-
-  //     },
-  //     deep:true
-  //   },
-  //   newItem:{
-  //   	handler:function(val){
-  //   		Storg.save("todo-input",val)
-  //   	}
-  //   }
-  // },
   methods:{
     saveTodo:function(){
       let dataString = JSON.stringify(this.items)     
