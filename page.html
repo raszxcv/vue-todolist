@@ -1,0 +1,203 @@
+<html>
+  <head>
+    <meta charset=utf-8>
+    <style>
+    	*{
+  padding: 0;
+  margin:0;
+
+}
+html{
+  background: #F5FFFA;
+}
+.btn{
+  width: 50px;
+  height: 30px;
+  cursor:pointer;
+  line-height:30px;
+  top:5px;
+  position: absolute;
+}
+.btn-nice{
+  background:#9cf;
+  color: #000;
+  right:60px;
+}
+.btn-deleta{
+  background:#f66;
+  color: #fff;
+  right:5px;
+}
+.finish{
+  text-decoration: line-through;
+}
+.inp{
+	text-align:center;
+	  margin-top: 40px;
+}
+h1, h2 {
+  font-weight: normal;
+  text-align: center;
+}
+ul{
+  margin: 0 auto;
+  width: 610px;
+  font-family:'微软雅黑';
+  position: relative;
+}
+li {
+  list-style:none;
+  width:600px;
+  margin: 10px 10px;
+  border: 1px solid #39c;
+  position:relative;
+  height:40px;
+  line-height:40px;
+  text-indent: 10px;
+
+}
+li span{
+	position: absolute;
+	right:120px;
+}
+#todo input{
+  width:400px;
+  height:30px;
+  font-size:20px;
+  margin-bottom: 40px;
+
+}
+#todo{
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  color: #2c3e50;
+  margin-top: 60px;
+}
+.logOutBtn a{
+  display: inline-block;
+  text-decoration: none;
+  background:   #DB7093;
+  padding:6px 10px 6px 10px;
+  color:#fff;
+}
+.logOutBtn{
+  text-align: center;
+  
+  margin:30px auto 0 auto;
+}
+#signInAndSignUp{
+  background: #F4A460;
+  width:300px;
+  height:200px;
+  text-align: center;
+  position: absolute;
+  top:35%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding-top:30px;
+}
+.signUp .formRow,.login .formRow{
+  margin-top:30px;
+}
+
+.signUp input,.login input{
+  margin-left:10px;
+  border:none;
+  text-indent: 5px;
+}
+.signUp span,.login span{
+  display: inline-block;
+  width:50px;
+}
+.signUp .signUpBtn,.login .loginBtn{
+  background:#fff;
+  border:none;
+  background:   #40E0D0;
+  width:60px;
+  height:20px;
+  line-height: 20px;
+  margin-top:40px;
+  color:#fff;
+  text-align: center;
+  text-indent:0;
+}
+.signUp .signUpBtn{
+  background: #FF6347;
+}
+.formType{
+  margin:0 auto;
+}
+.formType a{
+    display: inline-block;
+    text-decoration: none;
+    background: #B0C4DE;
+    color:#fff;
+    width:50px;
+    height:20px;
+    line-height: 20px;
+    margin-left:20px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="app">
+    <section id="signInAndSignUp" v-if="currentUser===null">
+        <div class="formType">
+<!--           <label><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
+          <label><input type="radio" name="type" value="login" v-model="actionType">登入</label> -->
+          <a href="#"  @click.prevent="changBtn('signup')" >注册</a>
+          <a href="#"  @click.prevent="changBtn('login')"  >登入</a>
+        </div>
+        <div class="signUp" v-if="actionType=='signUp'">
+          <form @submit.prevent=signUp>
+            <div class="formRow">
+              <span>用户名</span><input type="text" v-model="formDate.username">
+            </div>
+            <div class="formRow">
+              <span>密码</span><input type="password" v-model="formDate.password">
+            </div>
+            <div class="formAction">
+              <input class="signUpBtn" type="submit" value="signUp" >
+            </div>
+          </form>
+        </div>
+        <div class="login" v-if="actionType=='login'">
+          <form @submit.prevent=login>
+            <div class="formRow">
+              <span>用户名</span><input type="text" v-model="formDate.username">
+            </div>
+            <div class="formRow">
+              <span>密码</span><input type="password" v-model="formDate.password">
+            </div>
+            <div class="formActions">
+              <input class="loginBtn" type="submit" value="login">
+            </div>
+          </form>
+        </div>
+    </section>
+    <section id="todo" v-if="currentUser!=null">
+      <div class="he">
+      <h1>{{ loginName }}{{ msg }}</h1>
+      <div class="logOutBtn"><a href="#" @click.prevent=logOut>登出</a></div>
+      
+      <div class="inp"><input v-model='newItem' v-on:keyup.enter='addList'></div>
+      
+      <ul>
+        <li v-for="(item,index) in items" :class="{finish:item.isfinish}">
+
+        {{ item.listcnt }}
+        <span>{{ item.time }}</span>
+        <a src='#' v-on:click.prevent='isfinish(item)' class="btn btn-nice">完成</a>
+        <a src='#' v-on:click.prevent='isdelete(index)' class="btn btn-deleta">删除</a>
+        </li>
+      </ul>
+    </div>
+    </section>
+	  
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
