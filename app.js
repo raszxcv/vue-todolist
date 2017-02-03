@@ -2,12 +2,11 @@ import bar from './bar'
 import Vue from 'vue'
 import Storg from './storage'
 import AV from 'leancloud-storage'
+import AVKey from './cloudKey'
 
-var APP_ID = 'oCA8kXF4wyGSxCIkHUcCxfxK-gzGzoHsz';
-var APP_KEY = 'WTiO7VlWckiteR2gOCI3r4JU';
 AV.init({
-  appId: APP_ID,
-  appKey: APP_KEY
+  appId: AVKey.APP_ID,
+  appKey: AVKey.APP_KEY
 });
 
 
