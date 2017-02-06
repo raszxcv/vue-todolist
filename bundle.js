@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -287,21 +287,6 @@ module.exports = g;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = bar;
-function bar() {
-  alert('hello Webpack!');
-}
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var APP_ID = 'oCA8kXF4wyGSxCIkHUcCxfxK-gzGzoHsz';
@@ -313,7 +298,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, Buffer) {(function webpackUniversalModuleDefinition(root, factory) {
@@ -14292,10 +14277,10 @@ module.exports = AV;
 /******/ ]);
 });
 //# sourceMappingURL=av.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(7).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6).Buffer))
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22871,7 +22856,7 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(1)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22992,7 +22977,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23006,9 +22991,9 @@ function fromByteArray (uint8) {
 
 
 
-var base64 = __webpack_require__(6)
-var ieee754 = __webpack_require__(8)
-var isArray = __webpack_require__(9)
+var base64 = __webpack_require__(5)
+var ieee754 = __webpack_require__(7)
+var isArray = __webpack_require__(8)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -24789,7 +24774,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -24879,7 +24864,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -24890,25 +24875,21 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _bar = __webpack_require__(2);
-
-var _bar2 = _interopRequireDefault(_bar);
-
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _leancloudStorage = __webpack_require__(4);
+var _leancloudStorage = __webpack_require__(3);
 
 var _leancloudStorage2 = _interopRequireDefault(_leancloudStorage);
 
-var _cloudKey = __webpack_require__(3);
+var _cloudKey = __webpack_require__(2);
 
 var _cloudKey2 = _interopRequireDefault(_cloudKey);
 
@@ -24932,6 +24913,8 @@ var app = new _vue2.default({
       username: '',
       password: ''
     },
+    isLoginColor: false,
+    isSignColor: true,
     currentUser: null
 
   },
@@ -24981,6 +24964,7 @@ var app = new _vue2.default({
 
       if (this.currentUser) {
         var query = new _leancloudStorage2.default.Query('AllTodos');
+        console.log(query);
         query.find().then(function (todos) {
           var avAllTodos = todos[0];
           var id = avAllTodos.id;
@@ -25027,11 +25011,17 @@ var app = new _vue2.default({
       this.saveOrUpdateTodos();
     },
     changBtn: function changBtn(type) {
+      var _ref = [false, false];
+      this.isSignColor = _ref[0];
+      this.isLoginColor = _ref[1];
+
       if (type === "signup") {
         this.actionType = 'signUp';
+        this.isSignColor = true;
       }
       if (type === "login") {
         this.actionType = 'login';
+        this.isLoginColor = true;
       }
     },
     signUp: function signUp() {
@@ -25040,12 +25030,12 @@ var app = new _vue2.default({
       user.setUsername(this.formDate.username);
 
       user.setPassword(this.formDate.password);
-
       user.signUp().then(function (loginedUser) {
         // this.currentUser = this.getCurrentUser();
+
         alert('注册成功!');
       }, function (error) {
-        alert("注册失败");
+        alert("用户名已被注册");
       });
     },
     login: function login() {

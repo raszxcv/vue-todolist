@@ -1,4 +1,3 @@
-import bar from './bar'
 import Vue from 'vue'
 import AV from 'leancloud-storage'
 import AVKey from './cloudKey'
@@ -27,6 +26,8 @@ var app = new Vue({
         username:'',
         password:'',
       },
+      isLoginColor:false,
+      isSignColor:true,
       currentUser:null,
 
   },
@@ -76,6 +77,7 @@ var app = new Vue({
     fetchTodos:function(){
       if(this.currentUser){
        var query = new AV.Query('AllTodos');
+       console.log(query)
        query.find()
          .then((todos)=> {
           let avAllTodos = todos[0];
@@ -123,11 +125,14 @@ var app = new Vue({
       this.saveOrUpdateTodos();
     },
     changBtn:function(type){
+      [this.isSignColor,this.isLoginColor]=[false,false]
       if(type==="signup"){
         this.actionType='signUp';
+        this.isSignColor=true;
       }
       if(type==="login"){
         this.actionType='login';
+        this.isLoginColor=true;
       }      
     },
     signUp:function(){
@@ -136,12 +141,12 @@ var app = new Vue({
       user.setUsername(this.formDate.username);
 
       user.setPassword(this.formDate.password);
-
       user.signUp().then((loginedUser) =>{
             // this.currentUser = this.getCurrentUser();
+
       alert('注册成功!');
         }, (error) => {
-          alert("注册失败")
+          alert("用户名已被注册")
       });
     },
     login:function(){

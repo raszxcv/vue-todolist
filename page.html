@@ -142,7 +142,9 @@ li span{
 [v-cloak]{
   display:none;
 }
-
+.formType a.clickColor{
+  background:red;
+}
     </style>
   </head>
   <body>
@@ -151,8 +153,8 @@ li span{
         <div class="formType">
 <!--           <label><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
           <label><input type="radio" name="type" value="login" v-model="actionType">登入</label> -->
-          <a href="#"  @click.prevent="changBtn('signup')" >注册</a>
-          <a href="#"  @click.prevent="changBtn('login')"  >登入</a>
+          <a href="#"  @click.prevent="changBtn('signup')" :class="{clickColor:isSignColor}">注册</a>
+          <a href="#"  @click.prevent="changBtn('login')"  :class="{clickColor:isLoginColor}">登入</a>
         </div>
         <div class="signUp" v-if="actionType=='signUp'">
           <form @submit.prevent=signUp>
@@ -163,7 +165,7 @@ li span{
               <span>密码</span><input type="password" v-model="formDate.password">
             </div>
             <div class="formAction">
-              <input class="signUpBtn" type="submit" value="signUp" >
+              <input class="signUpBtn" type="submit" value="注册" >
             </div>
           </form>
         </div>
@@ -176,7 +178,7 @@ li span{
               <span>密码</span><input type="password" v-model="formDate.password">
             </div>
             <div class="formActions">
-              <input class="loginBtn" type="submit" value="login">
+              <input class="loginBtn" type="submit" value="登入">
             </div>
           </form>
         </div>
