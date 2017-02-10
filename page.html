@@ -95,9 +95,9 @@ li span:nth-child(1){
   margin:30px auto 0 auto;
 }
 #signInAndSignUp{
-  background: #F4A460;
+  background:url('./img/login.jpg') center no-repeat;
   width:300px;
-  height:200px;
+  height:450px;
   text-align: center;
   position: absolute;
   top:35%;
@@ -105,25 +105,33 @@ li span:nth-child(1){
   transform:translate(-50%,-50%);
   padding-top:30px;
 }
+
 .signUp .formRow,.login .formRow{
   margin-top:30px;
 }
 
 .signUp input,.login input{
   margin-left:10px;
-  border:none;
   text-indent: 5px;
+  background: transparent;
+  height:20px;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  outline:none;
 }
 .signUp span,.login span{
   display: inline-block;
-  width:50px;
+  height:20px;
+  border-bottom:#fff;
 }
 .signUp .signUpBtn,.login .loginBtn{
-  background:#fff;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
   border:none;
-  background:   #40E0D0;
-  width:60px;
-  height:20px;
+  background:  rgb(255,51,102);
   line-height: 20px;
   margin-top:40px;
   color:#fff;
@@ -131,7 +139,7 @@ li span:nth-child(1){
   text-indent:0;
 }
 .signUp .signUpBtn{
-  background: #FF6347;
+  background: rgb(255,51,102);
 }
 .formType{
   margin:0 auto;
@@ -150,24 +158,33 @@ li span:nth-child(1){
   display:none;
 }
 .formType a.clickColor{
-  background:red;
+  background:rgb(255,51,102);
+}
+.signInAndSignUpCnt{
+  margin-top:70px;
+}
+.loginImg{
+  width:150px;
+  height:150px;
 }
     </style>
   </head>
   <body>
     <div id="app">
     <section id="signInAndSignUp" v-if="currentUser===null" v-cloak>
-        <div class="formType">
+    <img class="loginImg" src="./img/logo.png" alt="">
+    <div class="signInAndSignUpCnt">
+      <div class="formType">
           <a href="#"  @click.prevent="changBtn('signup')" :class="{clickColor:isSignColor}">注册</a>
           <a href="#"  @click.prevent="changBtn('login')"  :class="{clickColor:isLoginColor}">登入</a>
         </div>
         <div class="signUp" v-if="actionType=='signUp'">
           <form @submit.prevent=signUp>
             <div class="formRow">
-              <span>用户名</span><input type="text" v-model="formDate.username">
+              <span><input type="text" v-model="formDate.username" placeholder="Username"></span>
             </div>
             <div class="formRow">
-              <span>密码</span><input type="password" v-model="formDate.password">
+              <input type="password" v-model="formDate.password" placeholder="Password">
             </div>
             <div class="formAction">
               <input class="signUpBtn" type="submit" value="注册" >
@@ -177,16 +194,18 @@ li span:nth-child(1){
         <div class="login" v-if="actionType=='login'">
           <form @submit.prevent=login>
             <div class="formRow">
-              <span>用户名</span><input type="text" v-model="formDate.username">
+              <input type="text" v-model="formDate.username" placeholder="Username">
             </div>
             <div class="formRow">
-              <span>密码</span><input type="password" v-model="formDate.password">
+              <input type="password" v-model="formDate.password" placeholder="Password">
             </div>
             <div class="formActions">
               <input class="loginBtn" type="submit" value="登入">
             </div>
           </form>
         </div>
+    </div>
+        
     </section>
     <section id="todo" v-if="currentUser!=null" v-cloak>
       <div class="he">

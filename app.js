@@ -6,12 +6,6 @@ AV.init({
   appId: AVKey.APP_ID,
   appKey: AVKey.APP_KEY
 });
-
-
-
-
-
-
 var app = new Vue({
   el: '#app',
   components:{
@@ -34,9 +28,6 @@ var app = new Vue({
   created: function(){
     this.currentUser = this.getCurrentUser();
     this.fetchTodos();
-
-    
-
   },
   methods:{
     saveTodo:function(){

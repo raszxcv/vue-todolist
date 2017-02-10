@@ -24899,7 +24899,6 @@ _leancloudStorage2.default.init({
   appId: _cloudKey2.default.APP_ID,
   appKey: _cloudKey2.default.APP_KEY
 });
-
 var app = new _vue2.default({
   el: '#app',
   components: {},
