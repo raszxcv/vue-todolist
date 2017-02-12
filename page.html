@@ -5,7 +5,7 @@
     	*{
   padding: 0;
   margin:0;
-
+font-family:'微软雅黑';
 }
 html{
   background: #F5FFFA;
@@ -54,7 +54,12 @@ li {
   height:40px;
   line-height:40px;
   text-indent: 10px;
-
+  transition: 0.5s;
+}
+li:hover{
+  box-shadow:3px 3px 5px rgba(0,0,0,0.25);
+  transform:scale(1.5,1.5);
+  transition: 0.5s;
 }
 
 li span{
@@ -104,6 +109,7 @@ li span:nth-child(1){
   left:50%;
   transform:translate(-50%,-50%);
   padding-top:30px;
+  box-shadow:0 3px 3px 0 rgba(0,0,0,0.25);
 }
 
 .signUp .formRow,.login .formRow{
@@ -142,23 +148,26 @@ li span:nth-child(1){
   background: rgb(255,51,102);
 }
 .formType{
+  width:140px;
   margin:0 auto;
+  text-align: center;
+
 }
 .formType a{
     display: inline-block;
     text-decoration: none;
-    background: #B0C4DE;
-    color:#fff;
-    width:50px;
+    color:#ccc;
+    width:40px;
     height:20px;
     line-height: 20px;
-    margin-left:20px;
+    padding-bottom:5px;
 }
 [v-cloak]{
   display:none;
 }
 .formType a.clickColor{
-  background:rgb(255,51,102);
+  color:#fff;
+  border-bottom: 3px solid rgb(114,190,216);
 }
 .signInAndSignUpCnt{
   margin-top:70px;
