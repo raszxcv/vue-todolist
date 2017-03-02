@@ -44,7 +44,7 @@ var app = new Vue({
       
       avTodos.save().then((todo)=>{
         this.items.id=todo.id;
-        console.log("保存成功");
+        // console.log("保存成功");
       },function(error){
         console.error("保存失败");
       });      
@@ -53,9 +53,9 @@ var app = new Vue({
       let dataString = JSON.stringify(this.items);
       let avTodos=AV.Object.createWithoutData('AllTodos',this.items.id);
       avTodos.set('content',dataString);
-      avTodos.save().then(()=>{
-        console.log('更新成功')
-      })
+      // avTodos.save().then(()=>{
+      //   console.log('更新成功')
+      // })
     },
     saveOrUpdateTodos:function(){
       if(this.items.id){
@@ -87,7 +87,6 @@ var app = new Vue({
         time:timess,
       })
       this.newItem='';
-      console.log(this.items.id)
       this.saveOrUpdateTodos();
     },
     toggleisfinish:function(item){
