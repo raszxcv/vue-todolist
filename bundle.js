@@ -24951,7 +24951,6 @@ var app = new _vue2.default({
       });
     },
     saveOrUpdateTodos: function saveOrUpdateTodos() {
-      console.log(this.items.id);
       if (this.items.id) {
         this.updateTodos();
       } else {
@@ -24963,13 +24962,11 @@ var app = new _vue2.default({
 
       if (this.currentUser) {
         var query = new _leancloudStorage2.default.Query('AllTodos');
-        console.log(query);
         query.find().then(function (todos) {
           var avAllTodos = todos[0];
           var id = avAllTodos.id;
           _this2.items = JSON.parse(avAllTodos.attributes.content);
           _this2.items.id = id;
-          console.log(_this2.items.id);
         }, function (error) {
           console.error(error);
         });
@@ -24988,16 +24985,15 @@ var app = new _vue2.default({
       this.saveOrUpdateTodos();
     },
     toggleisfinish: function toggleisfinish(item) {
-      console.log(item);
       item.isfinish = !item.isfinish;
       this.saveOrUpdateTodos();
     },
     isfinish: function isfinish(item) {
-      console.log(item);
       item.isfinish = !item.isfinish;
       this.saveOrUpdateTodos();
     },
     isdelete: function isdelete(index) {
+      var Id = this.items.id;
       var vm = this;
       var items = [];
       vm.items.map(function (val) {
@@ -25007,6 +25003,7 @@ var app = new _vue2.default({
         items.push(val);
       });
       vm.items = items;
+      vm.items.id = Id;
       this.saveOrUpdateTodos();
     },
     changBtn: function changBtn(type) {

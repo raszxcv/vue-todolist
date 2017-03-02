@@ -32,8 +32,8 @@ var app = new Vue({
   methods:{
     saveTodo:function(){
       let dataString = JSON.stringify(this.items)     
-      var AVTodos = AV.Object.extend('AllTodos');
-      var avTodos = new AVTodos();
+      let AVTodos = AV.Object.extend('AllTodos');
+      let avTodos = new AVTodos();
       
       let acl =new AV.ACL();
       acl.setReadAccess(AV.User.current(),true);
@@ -58,7 +58,6 @@ var app = new Vue({
       })
     },
     saveOrUpdateTodos:function(){
-      console.log(this.items.id)
       if(this.items.id){
         this.updateTodos();
       }else{
@@ -68,14 +67,12 @@ var app = new Vue({
     fetchTodos:function(){
       if(this.currentUser){
        var query = new AV.Query('AllTodos');
-       console.log(query)
        query.find()
          .then((todos)=> {
           let avAllTodos = todos[0];
           let id = avAllTodos.id;
           this.items = JSON.parse(avAllTodos.attributes.content);
-          this.items.id=id;
-          console.log(this.items.id)         
+          this.items.id=id;        
          }, function(error){
            console.error(error) 
          })
@@ -94,16 +91,15 @@ var app = new Vue({
       this.saveOrUpdateTodos();
     },
     toggleisfinish:function(item){
-      console.log(item)
       item.isfinish=!item.isfinish;
       this.saveOrUpdateTodos();
     },
     isfinish:function(item){
-      console.log(item)
       item.isfinish=!item.isfinish;
       this.saveOrUpdateTodos();
     },
     isdelete:function(index){
+      let Id = this.items.id;
       let vm=this;
       let items=[];
       vm.items.map(function(val){
@@ -113,6 +109,7 @@ var app = new Vue({
         items.push(val)
       })
       vm.items=items;
+      vm.items.id=Id;
       this.saveOrUpdateTodos();
     },
     changBtn:function(type){
